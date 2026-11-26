@@ -1,0 +1,9 @@
+[project]
+name = "mlp-from-scratch"
+version = "0.1.0"
+description = "Rete neurale implementata da zero in NumPy e confrontata con PyTorch"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
