@@ -10,8 +10,6 @@ class Linear:
 
     def __init__(self, in_features: int, out_features: int, seed: int = 0):
         rng = np.random.default_rng(seed)
-        # TODO: inizializza self.W con He initialization: N(0, sqrt(2 / in_features))
-        # TODO: inizializza self.b a zeri, shape (out_features,)
         self.W = rng.normal(loc=0.0, scale=np.sqrt(2/in_features), size=(in_features, out_features))
         self.b = np.zeros(shape=(out_features,))
         self.dW = None
