@@ -30,8 +30,12 @@ class Linear:
 
 
 class ReLU:
+    def __init__(self):
+        self._mask = None
+
     def forward(self, x: np.ndarray) -> np.ndarray:
-        raise NotImplementedError("TODO")
+        self._mask = (x > 0)
+        return np.where(self._mask, x, 0.0)
 
     def backward(self, grad_out: np.ndarray) -> np.ndarray:
-        raise NotImplementedError("TODO")
+        return grad_out * self._mask
