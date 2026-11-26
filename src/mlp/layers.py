@@ -24,7 +24,9 @@ class Linear:
 
     def backward(self, grad_out: np.ndarray) -> np.ndarray:
         """grad_out = dL/dy. Calcola self.dW, self.db e ritorna dL/dx."""
-        raise NotImplementedError("TODO")
+        self.dW = self._x.T @ grad_out 
+        self.db = np.sum(grad_out, axis=0)
+        return grad_out@ self.W.T
 
 
 class ReLU:
