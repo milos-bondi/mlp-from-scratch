@@ -12,14 +12,15 @@ class Linear:
         rng = np.random.default_rng(seed)
         # TODO: inizializza self.W con He initialization: N(0, sqrt(2 / in_features))
         # TODO: inizializza self.b a zeri, shape (out_features,)
-        self.W = None
-        self.b = None
+        self.W = rng.normal(loc=0.0, scale=np.sqrt(2/in_features), size=(in_features, out_features))
+        self.b = np.zeros(shape=(out_features,))
         self.dW = None
         self.db = None
         self._x = None  # salva l'input nel forward: ti serve nel backward
 
     def forward(self, x: np.ndarray) -> np.ndarray:
-        raise NotImplementedError("TODO: calcola x @ W + b e salva x")
+        self._x = x
+        return x@self.W + self.b
 
     def backward(self, grad_out: np.ndarray) -> np.ndarray:
         """grad_out = dL/dy. Calcola self.dW, self.db e ritorna dL/dx."""
