@@ -4,12 +4,9 @@ import numpy as np
 
 class SoftmaxCrossEntropy:
     def forward(self, logits: np.ndarray, targets: np.ndarray) -> float:
-        """logits: (batch, classes), targets: (batch,) interi. Ritorna la loss media.
-
-        Suggerimento: sottrai il max per riga prima di exp() per evitare overflow.
-        """
+        """logits: (batch, classes), targets: (batch,) int. Returns avg Loss."""
         raise NotImplementedError("TODO")
 
     def backward(self) -> np.ndarray:
-        """Ritorna dL/dlogits, shape (batch, classes). Risultato: (softmax - one_hot) / batch"""
+        """Returns dL/dlogits, shape (batch, classes). Result: (softmax - one_hot) / batch"""
         raise NotImplementedError("TODO")
