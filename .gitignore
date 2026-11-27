@@ -8,6 +8,8 @@ __pycache__/
 venv/
 data/*
 !data/.gitkeep
+notebooks/data/
+results/*.png
 *.pt
 *.pth
 *.npz

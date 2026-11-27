@@ -1,43 +1,54 @@
 # MLP from Scratch
 
-A Multi-Layer Perceptron (MLP) implemented **from scratch using NumPy**, with manually implemented backpropagation, trained on the MNIST dataset and benchmarked against an equivalent **PyTorch** implementation.
+A multi-layer perceptron implemented with NumPy, including manual forward and
+backward passes, and trained on the MNIST handwritten-digit dataset. The
+repository also includes exploratory notebooks and a small PyTorch-based
+gradient comparison.
 
-> 🚧 Work in progress
+## Features
 
-## Objectives
-
-- [ ] Implement `Linear` and `ReLU` layers with forward and backward passes
-- [ ] Implement numerically stable softmax and cross-entropy loss
-- [ ] Validate analytical gradients through numerical gradient checking
-- [ ] Train the network on MNIST using mini-batch stochastic gradient descent (SGD)
-- [ ] Reproduce the same architecture in PyTorch and compare performance
-
-## Results
-
-| Implementation | Test Accuracy | Time per Epoch |
-|---|---|---|
-| NumPy (from scratch) | – | – |
-| PyTorch | – | – |
-
-<!-- Add training loss plot: ![Loss](results/loss.png) -->
+- Fully connected and ReLU layers with forward and backward passes
+- Numerically stable softmax cross-entropy loss
+- Mini-batch stochastic gradient descent training
+- MNIST exploration and NumPy warm-up notebooks
+- Training metrics and sample prediction visualizations
 
 ## Getting Started
 
-Create a virtual environment, install the dependencies, and run the tests:
+Python 3.10 or newer is required. From the repository root, install the project
+and its dependencies:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-pytest
+python -m pip install --upgrade pip
+python -m pip install -e .
+```
+
+Run the training script from the repository root:
+
+```bash
+python -m mlp.train
+```
+
+The script downloads MNIST to `data/` on its first run and saves visualizations
+to `results/`.
+
+## Development
+
+Install the development dependencies with `uv` and run the test suite with:
+
+```bash
+uv sync --dev
+uv run pytest
 ```
 
 ## Project Structure
 
 ```text
-src/mlp/       Core implementation (layers, losses, model, data, training)
-tests/         Numerical gradient checks and environment tests
-notebooks/     Exploratory analysis and visualizations
-results/       Performance metrics and training plots
+src/mlp/       NumPy implementation (data, layers, losses, model, training)
+tests/         Gradient, model, and environment checks
+notebooks/     NumPy exercises and MNIST exploration
+results/       Generated training visualizations (ignored by Git)
+data/          Downloaded MNIST data (ignored by Git)
 ```
-

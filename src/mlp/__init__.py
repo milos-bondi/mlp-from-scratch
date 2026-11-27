@@ -1,1 +1,1 @@
-"""MLP implementato da zero in NumPy."""
+"""A multi-layer perceptron implemented from scratch with NumPy."""
