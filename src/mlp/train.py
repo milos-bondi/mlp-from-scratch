@@ -10,6 +10,9 @@ from mlp.layers import Linear, ReLU
 from mlp.losses import SoftmaxCrossEntropy
 from mlp.model import MLP
 
+from time import perf_counter
+
+
 random_seed = 43
 rng = np.random.default_rng(seed=random_seed)
 INPUT_FEATURES = 784
@@ -22,6 +25,8 @@ epochs = 10
 
 def main():
     """Train the model, report epoch metrics, and save result plots."""
+
+    initial_time = perf_counter()
 
     X_train, y_train, X_test, y_test = load_mnist()
 
@@ -58,7 +63,6 @@ def main():
 
         test_logits = model.forward(x=X_test)
         preds = np.argmax(test_logits, axis=1)
-        wrong_indices = np.where(preds != y_test)[0]
         test_acc = np.mean(preds == y_test)
 
         accuracy.append(test_acc)
@@ -67,6 +71,10 @@ def main():
             f"Epoch {epoch:02d}/{epochs} | Loss: {mean_loss:.4f} "
             f"| Test Acc: {test_acc:.4f}"
         )
+
+    total_time = perf_counter() - initial_time
+
+    print(f"Total pipeline time: {total_time}")
 
     PROJECT_ROOT = Path(__file__).resolve().parents[2]
     results_dir = PROJECT_ROOT / "results"
@@ -82,6 +90,8 @@ def main():
         y_test,
         save_path=results_dir / "sample_prediction.png",
     )
+
+
 
 
 def softmax(logits: np.ndarray) -> np.ndarray:
